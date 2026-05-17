@@ -1,84 +1,87 @@
-Wafer Defect Detection AI
+<div align="center">
 
-AI-powered semiconductor wafer defect detection system using YOLO, OpenCV, FastAPI, and Next.js for real-time industrial inspection analytics.
+# Wafer Defect Detection AI
 
-Overview
+### Intelligent Semiconductor Inspection System Powered by Computer Vision & Deep Learning
 
-Wafer Defect Detection AI is an intelligent inspection platform designed to automate semiconductor wafer quality analysis using computer vision and deep learning.
+<p align="center">
+  AI-powered wafer defect detection platform using <strong>YOLOv8</strong>, <strong>FastAPI</strong>, <strong>OpenCV</strong>, and <strong>Next.js</strong> for real-time industrial inspection analytics.
+</p>
 
-The system detects wafer defects in real time using a YOLO-based object detection model, provides severity analysis, and delivers an interactive AI-powered inspection dashboard for industrial monitoring workflows.
+<br/>
 
-This project combines:
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+<img src="https://img.shields.io/badge/YOLOv8-111111?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white"/>
+<img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv"/>
+<img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs"/>
+<img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss"/>
 
-Deep Learning
-Computer Vision
-Real-Time Analytics
-Industrial AI
-Modern Full-Stack Development
-Features
-AI Defect Detection
-YOLOv8-based wafer defect detection
-Real-time image analysis
-Bounding box predictions
-Confidence scoring
-Industrial Inspection Dashboard
-Interactive modern UI
-Upload wafer images
-Detection summaries
-Severity indicators
-Inspection analytics
-AI Analytics
-Defect classification
-Defect count analysis
-Risk severity estimation
-Smart inspection reporting
-Full-Stack Architecture
-FastAPI backend
-Next.js frontend
-REST API integration
-Responsive UI design
-Tech Stack
-AI / Machine Learning
-Python
-YOLOv8
-OpenCV
-NumPy
-Ultralytics
-Backend
-FastAPI
-Uvicorn
-Frontend
-Next.js
-React
-TypeScript
-TailwindCSS
-Deployment & Tools
-GitHub
-Vercel
-VS Code
+</div>
 
-Project Architecture
+---
+
+# Overview
+
+Wafer Defect Detection AI is an industrial AI inspection platform designed to automate semiconductor wafer quality analysis using modern computer vision and deep learning technologies.
+
+The system detects wafer defects in real time using a YOLO-based object detection model, performs defect analysis, and provides an interactive AI-powered inspection dashboard for manufacturing workflows.
+
+---
+
+# Core Features
+
+## AI Defect Detection
+- YOLOv8-based defect detection
+- Real-time wafer image analysis
+- Bounding box predictions
+- Confidence score visualization
+
+## Industrial Analytics Dashboard
+- Modern responsive UI
+- Inspection analytics
+- Defect summaries
+- Severity indicators
+- Real-time inspection workflow
+
+## Computer Vision Pipeline
+- OpenCV image preprocessing
+- Automated detection flow
+- Smart defect classification
+- AI-driven inspection analysis
+
+## Full-Stack Architecture
+- FastAPI backend
+- Next.js frontend
+- REST API integration
+- TailwindCSS UI system
+
+---
+
+# Tech Stack
+
+| Category | Technologies |
+|---|---|
+| AI / ML | YOLOv8, OpenCV, NumPy |
+| Backend | Python, FastAPI, Uvicorn |
+| Frontend | Next.js, React, TypeScript |
+| Styling | TailwindCSS |
+| Tools | GitHub, VS Code |
+
+---
+
+# Project Architecture
+
+```text
 Frontend (Next.js)
-       ↓
+        ↓
 FastAPI Backend
-       ↓
+        ↓
 YOLOv8 Detection Engine
-       ↓
-Defect Analysis & Results
-       ↓
+        ↓
+Defect Analysis
+        ↓
 Inspection Dashboard
-System Workflow
-User uploads wafer image
-Image sent to FastAPI backend
-YOLO model performs defect detection
-Defects are classified and analyzed
-Detection results returned to frontend
-Dashboard displays:
-Defect type
-Severity
-Detection confidence
-Inspection analytics
-
 ## Screenshots
 
 ### Dashboard
@@ -101,113 +104,3 @@ Inspection analytics
 
 ![About Model](assets/aboutmodel.png)
 
-Folder Structure
-wafer-defect-detection-ai/
-│
-├── backend/
-│   ├── main.py
-│   ├── model/
-│   ├── uploads/
-│   ├── results/
-│
-├── frontend/
-│   ├── app/
-│   ├── public/
-│   ├── components/
-│
-├── README.md
-├── package.json
-└── .gitignore
-Installation
-Clone Repository
-git clone https://github.com/AbiramiMuthiah/wafer-defect-detection-ai.git
-cd wafer-defect-detection-ai
-Backend Setup
-cd backend
-
-Create virtual environment:
-
-python -m venv venv
-
-Activate environment:
-
-Windows
-venv\Scripts\activate
-
-Install dependencies:
-
-pip install -r requirements.txt
-
-Run backend:
-
-uvicorn main:app --reload
-
-Backend runs on:
-
-http://127.0.0.1:8000
-Frontend Setup
-
-Open another terminal:
-
-cd frontend
-
-Install dependencies:
-
-npm install
-
-Run frontend:
-
-npm run dev
-
-Frontend runs on:
-
-http://localhost:3000
-API Endpoint
-Inspect Wafer Image
-POST /inspect-image
-Input
-Wafer image file
-Output
-{
-  "main_defect": "Scratch",
-  "severity": "High",
-  "confidence": 0.94,
-  "total_defects": 3
-}
-Future Improvements
-Real-time webcam inspection
-Edge AI deployment
-Factory integration system
-Explainable AI module
-Multi-defect segmentation
-Cloud-based analytics
-Automated report generation
-Use Cases
-Semiconductor manufacturing
-Industrial quality inspection
-Smart factory automation
-AI-based defect analysis
-Production monitoring systems
-
-Author:
-Abirami Muthiah
-
-Applied AI Engineer & Data Science Developer
-
-AI Systems
-Computer Vision
-NLP
-Industrial AI
-Deep Learning
-
-GitHub:
-
-https://github.com/AbiramiMuthiah
-
-License:
-
-This project is licensed under the MIT License.
-
-Project Status:
-
-Actively under development and continuously improving with new AI inspection capabilities and advanced analytics features.
