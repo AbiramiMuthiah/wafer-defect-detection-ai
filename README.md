@@ -82,6 +82,7 @@ YOLOv8 Detection Engine
 Defect Analysis
         ↓
 Inspection Dashboard
+
 ## Screenshots
 
 ### Dashboard
@@ -104,3 +105,83 @@ Inspection Dashboard
 
 ![About Model](assets/aboutmodel.png)
 
+System Workflow:
+1. User uploads wafer image
+2. Backend receives image through FastAPI
+3. YOLOv8 performs defect detection
+4. Defects are classified and analyzed
+5. Results returned to frontend dashboard
+6. Analytics and severity reports displayed
+
+### Installation:
+Clone Repository
+git clone https://github.com/AbiramiMuthiah/wafer-defect-detection-ai.git
+cd wafer-defect-detection-ai
+
+### Backend Setup:
+cd backend
+
+Create virtual environment:
+
+python -m venv venv
+
+Activate environment:
+
+Windows
+venv\Scripts\activate
+
+Install dependencies:
+
+pip install -r requirements.txt
+
+Run backend:
+
+uvicorn main:app --reload
+
+Backend runs on:
+
+http://127.0.0.1:8000
+
+### Frontend Setup:
+
+Open another terminal:
+
+cd frontend
+
+Install dependencies:
+
+npm install
+
+Run frontend:
+
+npm run dev
+
+Frontend runs on:
+
+http://localhost:3000
+
+## Future Improvements:
+Edge AI deployment
+Real-time factory integration
+Explainable AI module
+Automated reporting system
+Cloud inspection analytics
+Multi-defect segmentation
+
+## Author
+Abirami Muthiah
+
+Applied AI Engineer & Data Science Developer
+
+Computer Vision
+Industrial AI
+Deep Learning
+AI Analytics
+Full-Stack AI Systems
+
+GitHub:
+https://github.com/AbiramiMuthiah
+
+## License
+
+Licensed under the MIT License.
