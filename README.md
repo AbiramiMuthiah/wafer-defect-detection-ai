@@ -70,7 +70,7 @@ The system detects wafer defects in real time using a YOLO-based object detectio
 
 ---
 
-# Project Architecture
+## Project Architecture
 
 ```text
 Frontend (Next.js)
@@ -82,6 +82,7 @@ YOLOv8 Detection Engine
 Defect Analysis
         ↓
 Inspection Dashboard
+```
 
 ## Screenshots
 
