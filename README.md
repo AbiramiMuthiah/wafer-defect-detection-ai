@@ -169,16 +169,27 @@ Automated reporting system
 Cloud inspection analytics
 Multi-defect segmentation
 
+# Project Highlights
+
+- Real-time AI wafer inspection platform
+- YOLOv8-based computer vision system
+- Full-stack AI architecture
+- Industrial analytics dashboard
+- FastAPI REST backend
+- Modern Next.js frontend
+- AI-powered defect severity analysis
+
+# AI Model
+
+Model: YOLOv8
+Task: Wafer defect object detection
+Framework: Ultralytics
+Inference Engine: OpenCV + PyTorch
+
 ## Author
-Abirami Muthiah
 
-Applied AI Engineer & Data Science Developer
-
-Computer Vision
-Industrial AI
-Deep Learning
-AI Analytics
-Full-Stack AI Systems
+Abirami Muthiah  
+Applied AI Engineer | Data Science Developer | Computer Vision Enthusiast
 
 GitHub:
 https://github.com/AbiramiMuthiah
