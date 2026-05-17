@@ -88,11 +88,11 @@ Inspection Dashboard
 
 ### Dashboard
 
-![Dashboard](assets/dashboard.png)
+![dashboard](assets/dashboard.png)
 
 ### Ai Assistant
 
-![Ai Assistant](assets/aiassistant.png)
+![aiassistant](assets/aiassistant.png)
 
 ### YOLO Detection
 
@@ -100,11 +100,11 @@ Inspection Dashboard
 
 ### Analytics
 
-![Analytics](assets/analytics.png)
+![analytics](assets/analytics.png)
 
 ### About Model
 
-![About Model](assets/aboutmodel.png)
+![aboutmodel](assets/aboutmodel.png)
 
 System Workflow:
 1. User uploads wafer image
