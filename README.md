@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🔬 AI Wafer Defect Detection System
+# AI Wafer Defect Detection System
 
 ### Explainable Human-in-the-Loop Semiconductor Inspection Platform
 
@@ -30,32 +30,32 @@
 
 ---
 
-## 📌 Overview
+## Overview
 
-**AI Wafer Defect Detection System** is a full-stack industrial AI platform designed to automate semiconductor wafer quality inspection. Built on the **WM-811K dataset** (25,519 wafer maps), the system goes beyond basic defect detection by combining explainable AI, anomaly detection for unknown defects, and a human feedback loop that improves the model over time.
+AI Wafer Defect Detection System is a full-stack industrial AI platform designed to automate semiconductor wafer quality inspection. Built on the WM-811K dataset (25,519 wafer maps), the system goes beyond basic defect detection by combining explainable AI, anomaly detection for unknown defects, and a human feedback loop that improves the model over time.
 
-> **Research framing:** _"An Explainable Self-Improving Anomaly Detection System for Semiconductor Wafer Quality Assurance"_
+> Research framing: "An Explainable Self-Improving Anomaly Detection System for Semiconductor Wafer Quality Assurance"
 
 ---
 
-## ✨ Key Features
+## Key Features
 
-### 🤖 AI Detection Engine
+### AI Detection Engine
 
-- **YOLOv8** defect localization with bounding boxes and confidence scores
-- **Anomaly detection** — flags unknown defect patterns outside training distribution
-- **AI Attention Heatmap** — visually explains which wafer regions influenced the AI decision (GradCAM)
-- **Root cause analysis** — maps defect location to probable manufacturing process step
-- **Yield prediction** — estimates wafer yield based on defect distribution
+- YOLOv8 defect localization with bounding boxes and confidence scores
+- Anomaly detection — flags unknown defect patterns outside training distribution
+- AI Attention Heatmap — visually explains which wafer regions influenced the AI decision
+- Root cause analysis — maps defect location to probable manufacturing process step
+- Yield prediction — estimates wafer yield based on defect distribution
 
-### 🔁 Human-in-the-Loop Active Learning
+### Human-in-the-Loop Active Learning
 
 - Inspector feedback buttons (Correct / Wrong / Unsure) on every inspection
 - Labels stored in MongoDB for retraining
 - Auto-retrain trigger after every 20 labeled samples
 - Active learning convergence tracking on the Model Evaluation page
 
-### 📊 Industrial Analytics Dashboard
+### Industrial Analytics Dashboard
 
 - Real-time KPI cards (accuracy, critical defects, yield, total inspections)
 - Wafer defect location map (color-coded: Critical / Moderate / Low)
@@ -63,19 +63,19 @@
 - Defect type breakdown, severity distribution, yield trend charts
 - Date range filters (Today / This Week / This Month)
 
-### 📋 Inspection Management
+### Inspection Management
 
 - Full inspection history with search, filter, and pagination
 - Expandable rows showing root cause, anomaly score, and inspector feedback
 - PDF report generation with AI Attention Heatmap, defect breakdown, and recommendations
 
-### 🤖 AI Assistant
+### AI Assistant
 
 - Gemini-powered conversational assistant with full inspection context
 - Explains defect types, severity, root causes, and recommended actions
 - Quick-prompt chips for common queries
 
-### 📈 Model Evaluation Page
+### Model Evaluation
 
 - Precision, Recall, F1-Score, Accuracy, mAP50 metric cards
 - Confusion matrix (TP / FP / TN / FN)
@@ -85,13 +85,13 @@
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 ### Dashboard
 
 ![Dashboard](assets/Dashboard.png)
 
-### Upload & AI Detection Result
+### Upload and Detection Result
 
 ![Detection](assets/Upload%20Inspection.png)
 
@@ -113,31 +113,31 @@
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 ```
 Wafer Image Upload (Next.js Frontend)
-           ↓
+           |
    FastAPI Backend
-           ↓
-   ┌───────────────────────────────────┐
-   │  YOLOv8 Defect Localization       │  → Bounding boxes + confidence
-   │  Anomaly Scoring Engine           │  → Unknown defect detection
-   │  AI Attention Heatmap (GradCAM)   │  → Visual explainability
-   │  Root Cause Mapping               │  → Process step diagnosis
-   │  Yield Prediction                 │  → Batch quality estimation
-   └───────────────────────────────────┘
-           ↓
+           |
+   +-----------------------------------+
+   |  YOLOv8 Defect Localization       |  -> Bounding boxes + confidence
+   |  Anomaly Scoring Engine           |  -> Unknown defect detection
+   |  AI Attention Heatmap (GradCAM)   |  -> Visual explainability
+   |  Root Cause Mapping               |  -> Process step diagnosis
+   |  Yield Prediction                 |  -> Batch quality estimation
+   +-----------------------------------+
+           |
    MongoDB Atlas (Inspection Records)
-           ↓
-   Inspector Feedback → Active Learning → Model Retraining
-           ↓
+           |
+   Inspector Feedback -> Active Learning -> Model Retraining
+           |
    Analytics Dashboard + PDF Report
 ```
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 | Category     | Technologies                                           |
 | ------------ | ------------------------------------------------------ |
@@ -148,11 +148,11 @@ Wafer Image Upload (Next.js Frontend)
 | Styling      | TailwindCSS, Recharts                                  |
 | AI Assistant | Google Gemini 1.5 Flash                                |
 | Dataset      | WM-811K (Kaggle) — 25,519 wafer maps, 8 defect classes |
-| Tools        | GitHub, VS Code, Docker                                |
+| Tools        | GitHub, VS Code                                        |
 
 ---
 
-## 🔬 Dataset
+## Dataset
 
 **WM-811K Wafer Map Dataset**
 
@@ -162,7 +162,7 @@ Wafer Image Upload (Next.js Frontend)
 
 ---
 
-## 📊 Model Performance
+## Model Performance
 
 | Metric          | Score            |
 | --------------- | ---------------- |
@@ -175,7 +175,7 @@ Wafer Image Upload (Next.js Frontend)
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -236,7 +236,7 @@ npm run dev
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 wafer-defect-detection-ai/
@@ -246,7 +246,7 @@ wafer-defect-detection-ai/
 │   └── models/              # YOLOv8 weights
 ├── frontend/
 │   ├── app/
-│   │   └── page.tsx         # Main application (all pages)
+│   │   └── page.tsx         # Main application
 │   ├── public/
 │   └── package.json
 ├── assets/                  # Screenshots
@@ -255,42 +255,42 @@ wafer-defect-detection-ai/
 
 ---
 
-## 🔌 API Endpoints
+## API Endpoints
 
-| Method | Endpoint              | Description                                |
-| ------ | --------------------- | ------------------------------------------ |
-| POST   | `/inspect`            | Run defect detection + anomaly + GradCAM   |
-| GET    | `/history`            | Paginated inspection history with filters  |
-| POST   | `/feedback`           | Submit inspector label for active learning |
-| GET    | `/analytics`          | Aggregated defect stats and trends         |
-| GET    | `/evaluation-metrics` | Model performance metrics                  |
-| POST   | `/ai-chat`            | Gemini AI assistant                        |
-| GET    | `/system-status`      | MongoDB + model health check               |
-
----
-
-## 🔮 Future Improvements
-
-- [ ] PatchCore full anomaly detection integration
-- [ ] LSTM defect progression prediction across wafer lots
-- [ ] Real-time video/webcam inspection mode
-- [ ] ONNX mobile deployment for factory floor use
-- [ ] Federated learning simulation across multiple fab machines
-- [ ] Zero-shot defect detection using CLIP
-- [ ] Cloud deployment (AWS EC2 + S3)
+| Method | Endpoint              | Description                                      |
+| ------ | --------------------- | ------------------------------------------------ |
+| POST   | `/inspect`            | Run defect detection + anomaly scoring + GradCAM |
+| GET    | `/history`            | Paginated inspection history with filters        |
+| POST   | `/feedback`           | Submit inspector label for active learning       |
+| GET    | `/analytics`          | Aggregated defect stats and trends               |
+| GET    | `/evaluation-metrics` | Model performance metrics                        |
+| POST   | `/ai-chat`            | Gemini AI assistant                              |
+| GET    | `/system-status`      | MongoDB and model health check                   |
 
 ---
 
-## 👩‍💻 Author
+## Future Improvements
 
-**Abirami Muthiah**
-Applied AI Engineer · Computer Vision · Full-Stack AI Systems
+- PatchCore full anomaly detection integration
+- LSTM defect progression prediction across wafer lots
+- Real-time video and webcam inspection mode
+- ONNX mobile deployment for factory floor use
+- Federated learning simulation across multiple fab machines
+- Zero-shot defect detection using CLIP
+- Cloud deployment on AWS EC2 and S3
+
+---
+
+## Author
+
+**Abirami Muthiah**  
+Applied AI Engineer | Computer Vision | Full-Stack AI Systems
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-abiramimuthiah--portfolio.vercel.app-blue?style=flat-square)](https://abiramimuthiah-portfolio.vercel.app)
 [![GitHub](https://img.shields.io/badge/GitHub-AbiramiMuthiah-181717?style=flat-square&logo=github)](https://github.com/AbiramiMuthiah)
 
 ---
 
-## 📄 License
+## License
 
 Licensed under the [MIT License](LICENSE).
