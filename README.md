@@ -89,27 +89,27 @@
 
 ### Dashboard
 
-![Dashboard](assets/Screenshot%202026-06-12%20143137.png)
+![Dashboard](assets/Dashboard.png)
 
 ### Upload & AI Detection Result
 
-![Detection](assets/Screenshot%202026-06-12%20143253.png)
+![Detection](assets/Upload%20Inspection.png)
 
 ### Analytics
 
-![Analytics](assets/Screenshot%202026-06-12%20144024.png)
+![Analytics](assets/Analytics.png)
 
 ### Model Evaluation Metrics
 
-![Model Evaluation](assets/Screenshot%202026-06-12%20144043.png)
+![Model Evaluation](assets/Model%20Evaluation.png)
 
 ### Inspection History
 
-![History](assets/Screenshot%202026-06-12%20144157.png)
+![History](assets/Inspection%20History.png)
 
 ### AI Assistant
 
-![AI Assistant](assets/Screenshot%202026-06-12%20143353.png)
+![AI Assistant](assets/AI%20assistant.png)
 
 ---
 
