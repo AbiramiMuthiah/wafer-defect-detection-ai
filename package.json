@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "jspdf": "^4.2.1",
+    "lucide-react": "^1.16.0",
+    "react-simple-maps": "^3.0.0",
     "recharts": "^3.8.1"
   }
 }
