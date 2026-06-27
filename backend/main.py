@@ -21,7 +21,8 @@ import httpx
 app = FastAPI(title="Wafer AI Backend", version="4.0")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
-client = MongoClient("mongodb://localhost:27017/")
+MONGO_URI = os.environ.get("MONGO_URI", "mongodb://localhost:27017/")
+client = MongoClient(MONGO_URI)
 db = client["wafer_ai"]
 inspection_collection = db["inspections"]
 user_collection       = db["users"]
@@ -214,7 +215,8 @@ async def inspect(file: UploadFile = File(...)):
             f"Predicted yield: {predicted_yield}%."
         )
 
-        base_url      = "http://127.0.0.1:8000"
+        base_url = os.environ.get("RAILWAY_PUBLIC_DOMAIN", "http://127.0.0.1:8000")
+        base_url = f"https://{base_url}" if not base_url.startswith("http") else base_url
         image_url     = f"{base_url}/uploads/{unique_name}"
         annotated_url = f"{base_url}/results/{unique_name}"
         gradcam_url   = f"{base_url}/outputs/{gradcam_filename}"
