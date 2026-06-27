@@ -114,7 +114,7 @@ async def inspect(file: UploadFile = File(...)):
             cv2.putText(annotated, label_text, (x1 + 2, label_y - 2), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1)
 
             cx = (x1 + x2) / 2; cy = (y1 + y2) / 2
-            points.append({"x": round(cx / width, 4), "y": round(cy / height, 4), "severity": point_severity})
+            points.append({"x": round(cx / width, 4), "y": round(cy / height, 4), "severity": point_severity, "defect_type": label_lower})
             boxes_data.append({"label": label, "confidence": round(confidence, 2), "severity": point_severity, "bbox": [x1, y1, x2, y2]})
             defect_counts[label] = defect_counts.get(label, 0) + 1
 
@@ -127,18 +127,33 @@ async def inspect(file: UploadFile = File(...)):
         result_path = os.path.join(RESULT_DIR, unique_name)
         cv2.imwrite(result_path, annotated)
 
-        # GradCAM-style heatmap
+        # Attention heatmap — uses actual bounding box regions for accuracy
         try:
             heatmap = np.zeros((height, width), dtype=np.float32)
-            for p in points:
-                px = int(p["x"] * width); py = int(p["y"] * height)
-                radius = 110 if p["severity"] == "Critical" else 80 if p["severity"] == "Moderate" else 55
-                cv2.circle(heatmap, (px, py), radius,      1.0, -1)
-                cv2.circle(heatmap, (px, py), radius // 2, 0.5, -1)
-            heatmap = cv2.GaussianBlur(heatmap, (201, 201), 0)
+
+            if boxes_data:
+                # Fill each detected bounding box region with intensity based on severity
+                for box in boxes_data:
+                    x1, y1, x2, y2 = box["bbox"]
+                    intensity = 1.0 if box["severity"] == "Critical" else 0.7 if box["severity"] == "Moderate" else 0.4
+                    # Fill the bounding box area
+                    heatmap[y1:y2, x1:x2] = np.maximum(heatmap[y1:y2, x1:x2], intensity)
+                    # Add a stronger centre point for emphasis
+                    cx = (x1 + x2) // 2; cy = (y1 + y2) // 2
+                    radius = max(8, min((x2 - x1), (y2 - y1)) // 2)
+                    cv2.circle(heatmap, (cx, cy), radius, min(intensity + 0.3, 1.0), -1)
+            else:
+                # No detections — dim overall heatmap
+                for p in points:
+                    px = int(p["x"] * width); py = int(p["y"] * height)
+                    cv2.circle(heatmap, (px, py), 40, 0.3, -1)
+
+            # Smooth to make it look natural, but not so much it loses structure
+            heatmap = cv2.GaussianBlur(heatmap, (51, 51), 0)
             heatmap = cv2.normalize(heatmap, None, 0, 255, cv2.NORM_MINMAX).astype(np.uint8)
             heatmap_color = cv2.applyColorMap(heatmap, cv2.COLORMAP_JET)
-            visualization = cv2.addWeighted(img, 0.4, heatmap_color, 0.8, 0)
+            # Blend: more original image weight so the wafer structure is visible
+            visualization = cv2.addWeighted(img, 0.5, heatmap_color, 0.6, 0)
             gradcam_filename = f"gradcam_{unique_name}"
             cv2.imwrite(os.path.join(OUTPUT_DIR, gradcam_filename), visualization)
         except Exception as heatmap_err:
