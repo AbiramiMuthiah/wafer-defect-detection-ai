@@ -281,6 +281,11 @@ wafer-defect-detection-ai/
 
 ---
 
+## 🚀 Live Demo
+
+**Frontend:** https://wafer-defect-detection-ai.vercel.app  
+**Backend API:** https://wafer-defect-detection-ai-production.up.railway.app
+
 ## Author
 
 **Abirami Muthiah**  
