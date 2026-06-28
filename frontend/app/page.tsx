@@ -1833,7 +1833,7 @@ export default function Home() {
                         nameKey="name"
                         outerRadius={100}
                         label={({ name, percent }) =>
-                          `${name} ${(percent * 100).toFixed(0)}%`
+                          `${name} ${((percent ?? 0) * 100).toFixed(0)}%`
                         }
                       >
                         {defectData.map((_: any, i: number) => (
@@ -1931,7 +1931,7 @@ export default function Home() {
                       nameKey="name"
                       outerRadius={90}
                       label={({ name, percent }) =>
-                        `${name} ${(percent * 100).toFixed(0)}%`
+                        `${name} ${((percent ?? 0) * 100).toFixed(0)}%`
                       }
                     >
                       {["#10b981", "#f59e0b", "#ef4444"].map((c, i) => (
