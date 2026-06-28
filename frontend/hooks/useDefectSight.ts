@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 
-export const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+export const BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
 const ITEMS_PER = 5;
 
 export function useDefectSight() {
@@ -17,7 +18,9 @@ export function useDefectSight() {
   const [dragging, setDragging] = useState(false);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
-  const [viewMode, setViewMode] = useState<"Original" | "Detection" | "AI Attention Heatmap">("Original");
+  const [viewMode, setViewMode] = useState<
+    "Original" | "Detection" | "AI Attention Heatmap"
+  >("Original");
   const [pdfLoading, setPdfLoading] = useState(false);
   const [stats, setStats] = useState<any>(null);
   const [statsLoading, setStatsLoading] = useState(true);
@@ -91,7 +94,9 @@ export function useDefectSight() {
 
   const fetchAnalytics = async () => {
     try {
-      const r = await fetch(`${BASE_URL}/analytics?time_filter=${analyticsTimeFilter}`);
+      const r = await fetch(
+        `${BASE_URL}/analytics?time_filter=${analyticsTimeFilter}`,
+      );
       setAnalyticsData(await r.json());
     } catch {
       console.error("Analytics fetch failed");
@@ -124,16 +129,25 @@ export function useDefectSight() {
     try {
       const form = new FormData();
       form.append("file", files[0]);
-      const r = await fetch(`${BASE_URL}/inspect`, { method: "POST", body: form });
+      const r = await fetch(`${BASE_URL}/inspect`, {
+        method: "POST",
+        body: form,
+      });
       const data = await r.json();
       if (data.error) throw new Error(data.error);
       setResult(data);
       setViewMode("Original");
       toast.success("Inspection complete!");
       if (data.severity === "Critical")
-        toast(`⚠ Critical defect: ${data.main_defect}`, { icon: "🚨", duration: 5000 });
+        toast(`⚠ Critical defect: ${data.main_defect}`, {
+          icon: "🚨",
+          duration: 5000,
+        });
       if (data.is_anomaly)
-        toast(`🔍 Anomaly detected: ${((data.anomaly_score || 0) * 100).toFixed(0)}%`, { icon: "⚠️", duration: 5000 });
+        toast(
+          `🔍 Anomaly detected: ${((data.anomaly_score || 0) * 100).toFixed(0)}%`,
+          { icon: "⚠️", duration: 5000 },
+        );
       fetchStats();
       fetchHistory();
       fetchAnalytics();
@@ -160,7 +174,9 @@ export function useDefectSight() {
       if (d.retrain_ready)
         toast.success("🎉 20 labels reached — model retraining triggered!");
       else
-        toast.success(`Feedback "${label}" submitted! (${d.labeled_count} total)`);
+        toast.success(
+          `Feedback "${label}" submitted! (${d.labeled_count} total)`,
+        );
       fetchEvalMetrics();
     } catch {
       toast.error("Feedback failed");
@@ -195,6 +211,7 @@ export function useDefectSight() {
   const handleDownloadPDF = async (res: any) => {
     setPdfLoading(true);
     try {
+      const { generateProfessionalPDF } = await import("@/lib/generatePDF");
       await generateProfessionalPDF(res, inspectorId);
     } catch (e) {
       toast.error("PDF generation failed");
@@ -203,7 +220,6 @@ export function useDefectSight() {
       setPdfLoading(false);
     }
   };
-
   const handleChat = async () => {
     if (!input.trim()) return;
     const cur = input;
@@ -214,7 +230,10 @@ export function useDefectSight() {
       ? `Current inspection — Main defect: ${result.main_defect}, Severity: ${result.severity}, Decision: ${result.decision}, Total defects: ${result.total_defects}, Risk score: ${getRiskScore(result)}%, Anomaly score: ${result.anomaly_score}. Explanation: ${result.explanation}`
       : "No inspection has been run yet.";
     const messages = [
-      ...chat.map((m) => ({ role: m.role === "user" ? "user" : "assistant", content: m.text })),
+      ...chat.map((m) => ({
+        role: m.role === "user" ? "user" : "assistant",
+        content: m.text,
+      })),
       { role: "user", content: cur },
     ];
     try {
@@ -227,9 +246,18 @@ export function useDefectSight() {
         }),
       });
       const data = await r.json();
-      setChat((p) => [...p, { role: "assistant", text: data.text || "Sorry, I could not respond." }]);
+      setChat((p) => [
+        ...p,
+        { role: "assistant", text: data.text || "Sorry, I could not respond." },
+      ]);
     } catch {
-      setChat((p) => [...p, { role: "assistant", text: "AI service unavailable. Make sure the backend is running and GEMINI_API_KEY is set." }]);
+      setChat((p) => [
+        ...p,
+        {
+          role: "assistant",
+          text: "AI service unavailable. Make sure the backend is running and GEMINI_API_KEY is set.",
+        },
+      ]);
     } finally {
       setChatLoading(false);
     }
@@ -268,60 +296,108 @@ export function useDefectSight() {
     defects: r.total_defects,
     risk: r.risk_score || 0,
   }));
-  const anomalyTrend = (analyticsData?.anomaly_trend || []).map((r: any, i: number) => ({
-    day: `#${i + 1}`,
-    anomaly: Math.round((r.anomaly_score || 0) * 100),
-  }));
+  const anomalyTrend = (analyticsData?.anomaly_trend || []).map(
+    (r: any, i: number) => ({
+      day: `#${i + 1}`,
+      anomaly: Math.round((r.anomaly_score || 0) * 100),
+    }),
+  );
   const radarData = evalMetrics
     ? [
-        { metric: "Precision", value: Math.round((evalMetrics.precision || 0) * 100) },
-        { metric: "Recall",    value: Math.round((evalMetrics.recall    || 0) * 100) },
-        { metric: "F1-Score",  value: Math.round((evalMetrics.f1_score  || 0) * 100) },
-        { metric: "Accuracy",  value: Math.round( evalMetrics.accuracy  || 0)        },
+        {
+          metric: "Precision",
+          value: Math.round((evalMetrics.precision || 0) * 100),
+        },
+        {
+          metric: "Recall",
+          value: Math.round((evalMetrics.recall || 0) * 100),
+        },
+        {
+          metric: "F1-Score",
+          value: Math.round((evalMetrics.f1_score || 0) * 100),
+        },
+        { metric: "Accuracy", value: Math.round(evalMetrics.accuracy || 0) },
       ]
     : [];
 
   const navItems = [
-    ["dashboard",  "Dashboard"],
-    ["upload",     "Upload Inspection"],
-    ["assistant",  "AI Assistant"],
-    ["analytics",  "Analytics"],
+    ["dashboard", "Dashboard"],
+    ["upload", "Upload Inspection"],
+    ["assistant", "AI Assistant"],
+    ["analytics", "Analytics"],
     ["evaluation", "Model Evaluation"],
-    ["guide",      "Defect Guide"],
-    ["model",      "How It Works"],
-    ["history",    "Inspection History"],
+    ["guide", "Defect Guide"],
+    ["model", "How It Works"],
+    ["history", "Inspection History"],
   ];
 
   return {
     // nav
-    activeSection, setActiveSection, navItems,
+    activeSection,
+    setActiveSection,
+    navItems,
     // auth
-    systemAccess, setSystemAccess,
-    showRegister, setShowRegister,
-    inspectorId, setInspectorId,
-    department, setDepartment,
-    shift, setShift,
-    handleAccessSystem, handleRegister,
+    systemAccess,
+    setSystemAccess,
+    showRegister,
+    setShowRegister,
+    inspectorId,
+    setInspectorId,
+    department,
+    setDepartment,
+    shift,
+    setShift,
+    handleAccessSystem,
+    handleRegister,
     // upload
-    files, dragging, setDragging, loading,
-    result, viewMode, setViewMode, pdfLoading,
-    handleFiles, handleUpload, handleFeedback, handleDownloadPDF,
+    files,
+    dragging,
+    setDragging,
+    loading,
+    result,
+    viewMode,
+    setViewMode,
+    pdfLoading,
+    handleFiles,
+    handleUpload,
+    handleFeedback,
+    handleDownloadPDF,
     // stats
-    stats, statsLoading,
+    stats,
+    statsLoading,
     // history
-    history, historyLoading,
-    historySearch, setHistorySearch,
-    severityFilter, setSeverityFilter,
-    decisionFilter, setDecisionFilter,
-    page, setPage, totalPages,
-    expandedRow, setExpandedRow,
-    handleCSVExport, getRiskScore,
+    history,
+    historyLoading,
+    historySearch,
+    setHistorySearch,
+    severityFilter,
+    setSeverityFilter,
+    decisionFilter,
+    setDecisionFilter,
+    page,
+    setPage,
+    totalPages,
+    expandedRow,
+    setExpandedRow,
+    handleCSVExport,
+    getRiskScore,
     // analytics
-    analyticsTimeFilter, setAnalyticsTimeFilter,
-    defectData, severityData, trendData, anomalyTrend,
+    analyticsTimeFilter,
+    setAnalyticsTimeFilter,
+    defectData,
+    severityData,
+    trendData,
+    anomalyTrend,
     // evaluation
-    evalMetrics, evalLoading, radarData,
+    evalMetrics,
+    evalLoading,
+    radarData,
     // chat
-    chat, input, setInput, chatLoading, chatEndRef, handleChat,
+    chat,
+    input,
+    setInput,
+    chatLoading,
+    chatEndRef,
+    handleChat,
   };
 }
