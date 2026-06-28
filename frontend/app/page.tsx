@@ -2848,8 +2848,8 @@ export default function Home() {
               className="bg-white/5 border border-white/10 rounded-xl p-4 group"
               id="anomaly-guide"
             >
-              <summary className="cursor-pointer flex justify-between items-center text-base font-semibold text-green-400 select-none list-none">
-                <span>🔍 Anomaly Detection</span>
+              <summary className="cursor-pointer flex justify-between items-center text-base font-semibold text-pink-400 select-none list-none">
+                <span>Anomaly Detection</span>
                 <span className="group-open:rotate-180 transition-transform duration-200 text-gray-400">
                   ▼
                 </span>
