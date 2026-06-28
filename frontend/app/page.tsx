@@ -867,6 +867,18 @@ export default function Home() {
     else if (res.severity === "Moderate") s += 20;
     return Math.min(s, 100);
   };
+  const handleDownloadPDF = async (res: any) => {
+    setPdfLoading(true);
+    try {
+      const { generateProfessionalPDF } = await import("@/lib/generatePDF");
+      await generateProfessionalPDF(res, inspectorId);
+    } catch (e) {
+      toast.error("PDF generation failed");
+      console.error(e);
+    } finally {
+      setPdfLoading(false);
+    }
+  };
   const handleChat = async () => {
     if (!input.trim()) return;
     const cur = input;
