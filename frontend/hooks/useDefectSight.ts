@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import { generateProfessionalPDF } from "@/lib/generatePDF";
 
-export const BASE_URL = "http://127.0.0.1:8000";
+export const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
 const ITEMS_PER = 5;
 
 export function useDefectSight() {
