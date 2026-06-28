@@ -30,11 +30,13 @@
 
 ---
 
-## Overview
+## Wafer AI — AI-Powered Semiconductor Wafer Defect Detection
 
-AI Wafer Defect Detection System is a full-stack industrial AI platform designed to automate semiconductor wafer quality inspection. Built on the WM-811K dataset (25,519 wafer maps), the system goes beyond basic defect detection by combining explainable AI, anomaly detection for unknown defects, and a human feedback loop that improves the model over time.
+### An explainable, human-in-the-loop semiconductor inspection platform combining YOLOv8 defect localization, AI Attention Heatmap explainability, anomaly detection, and active learning.
 
-> Research framing: "An Explainable Self-Improving Anomaly Detection System for Semiconductor Wafer Quality Assurance"
+Live Demo: https://wafer-defect-detection-ai.vercel.app
+
+Backend API: https://wafer-defect-detection-ai-production.up.railway.app
 
 ---
 
@@ -242,12 +244,27 @@ npm run dev
 wafer-defect-detection-ai/
 ├── backend/
 │   ├── main.py              # FastAPI app, all endpoints
-│   ├── requirements.txt
-│   └── models/              # YOLOv8 weights
+│   ├── database.py          # MongoDB connection
+│   ├── routes/
+│   │   ├── inspect.py       # POST /inspect — YOLOv8 inference
+│   │   ├── ai_chat.py       # POST /ai-chat — AI assistant
+│   │   ├── feedback.py      # POST /feedback, /register
+│   │   └── analytics.py     # GET /dashboard-stats, /history, /analytics
+│   ├── model/
+│   │   └── best.pt          # YOLOv8s trained weights
+│   ├── Dockerfile
+│   └── requirements.txt
 ├── frontend/
 │   ├── app/
 │   │   └── page.tsx         # Main application
-│   ├── public/
+│   ├── components/
+│   │   ├── WaferHeatmap.tsx       # Defect location map
+│   │   ├── ImageComparisonPanel.tsx  # Original/Detection/Heatmap viewer
+│   │   └── Skeleton.tsx           # Loading skeleton
+│   ├── hooks/
+│   │   └── useDefectSight.ts      # All state and fetch logic
+│   ├── lib/
+│   │   └── generatePDF.ts         # PDF report generation
 │   └── package.json
 ├── assets/                  # Screenshots
 └── README.md
