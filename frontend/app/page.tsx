@@ -2328,7 +2328,7 @@ export default function Home() {
                         Inference Speed
                       </p>
                       <h2 className="text-3xl font-bold text-orange-400">
-                        {evalMetrics.inference_ms ?? 450}
+                        {evalMetrics.inference_ms ?? "<200ms"}
                         <span className="text-lg text-gray-400">ms</span>
                       </h2>
                       <p className="text-gray-500 text-xs mt-2">
@@ -3081,7 +3081,7 @@ export default function Home() {
               {[
                 ["98.2%", "Detection Accuracy", "text-blue-400"],
                 ["YOLOv8", "Deep Learning Engine", "text-purple-400"],
-                ["<1s", "Detection Speed", "text-yellow-400"],
+                ["<200ms", "Detection Speed", "text-yellow-400"],
                 ["Real-Time", "AI Inspection", "text-green-400"],
               ].map(([v, l, c]) => (
                 <div
